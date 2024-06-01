@@ -1,0 +1,34 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+#Webstorm
+.idea
+
+# dependencies
+/node_modules
+
+### VisualStudioCode ###
+.vscode/*
+
+# next.js
+/.next/
+.vercel
+
+# misc
+.DS_Store
+.env*
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional eslint cache
+.eslintcache
+
+
+.env
+.env.local
+testCoverage

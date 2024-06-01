@@ -1,0 +1,17 @@
+**/.git
+**/.svn
+**/.hg
+**/.husky
+**/.swc
+**/.vscode
+**/.next
+**/node_modules
+graphql.schema.json
+node_modules
+dist
+build
+coverage
+testCoverage
+storybook-static
+**/*.md
+codegen_rq.ts

@@ -1,0 +1,41 @@
+name: Develop CI
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  run-semantic-release:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Setup
+        uses: ./.github/actions/setup
+        with:
+          npm_token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish Version
+        uses: codfish/semantic-release-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
+          CI: true
+          HUSKY: 0
+        with:
+          branches: |
+            [
+              'develop'
+            ]
+          tag-format: v${version}
+          plugins: >
+            [['@semantic-release/commit-analyzer', {"preset": "conventionalcommits"}],
+            ['@semantic-release/release-notes-generator', {"preset": "conventionalcommits"}],
+            ['@semantic-release/npm', {"npmPublish": false}],
+            '@semantic-release/github',
+            ['@semantic-release/changelog', {"changelogFile": "CHANGELOG.md"}],
+            '@semantic-release/git']

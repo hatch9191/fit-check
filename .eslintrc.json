@@ -1,0 +1,150 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "next",
+    "prettier",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended"
+  ],
+  "plugins": ["@typescript-eslint", "unused-imports", "jsx-a11y", "vitest"],
+  "ignorePatterns": [
+    ".eslintrc.json",
+    "configs/*",
+    "src/**/__mocks__/*",
+    "src/**/*.stories.*",
+    "next.config.js",
+    "vitest.config.ts",
+    "reports/*",
+    "package.json",
+    "package-lock.json",
+    "storybook-static/*",
+    "next-env.d.ts",
+    "codegen_rq.ts",
+    "*.config.json",
+    "*.test.json",
+    "commitlint.config.js",
+    "package.json",
+    "yarn.lock",
+    ".next"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "groups": [
+          "external",
+          "builtin",
+          "internal",
+          "sibling",
+          "parent",
+          "index"
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "pathGroups": [
+          {
+            "pattern": "@feast-it",
+            "group": "internal"
+          }
+        ]
+      }
+    ],
+    "import/no-anonymous-default-export": "warn",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-types": "warn",
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "no-prototype-builtins": "warn",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "no-useless-escape": "warn",
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 1,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "react/jsx-props-no-spreading": [0],
+    "react/jsx-one-expression-per-line": [0],
+    "react/jsx-boolean-value": ["error", "always"],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".tsx"]
+      }
+    ],
+    "react/jsx-newline": [2, { "prevent": true, "allowMultilines": true }],
+    "react/prop-types": "off",
+    "jsx-quotes": ["error", "prefer-double"],
+    "radix": "error",
+    "no-var": "error",
+    "no-empty": "error",
+    "no-eval": "error",
+    "no-debugger": 1,
+    "no-duplicate-imports": "error",
+    "no-bitwise": 2,
+    "no-multiple-empty-lines": 2,
+    "curly": "error",
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error", "info", "clear"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.test.*", "__tests__/**"],
+      "rules": {
+        "vitest/consistent-test-it": [
+          "error",
+          {
+            "fn": "it",
+            "withinDescribe": "it"
+          }
+        ],
+        "vitest/expect-expect": "error",
+        "vitest/no-focused-tests": "error",
+        "vitest/no-standalone-expect": "error",
+        "vitest/max-nested-describe": [
+          "warn",
+          {
+            "max": 5
+          }
+        ],
+        "vitest/no-disabled-tests": "warn",
+        "vitest/prefer-called-with": "warn",
+        "vitest/prefer-each": "warn",
+        "vitest/prefer-expect-resolves": "warn",
+        "vitest/prefer-spy-on": "warn",
+        "vitest/valid-expect": "warn"
+      }
+    }
+  ]
+}

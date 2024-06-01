@@ -1,0 +1,24 @@
+name: Branch CI
+on: pull_request
+
+jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup
+        uses: ./.github/actions/setup
+        with:
+          npm_token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Lint
+        run: yarn run lint
+
+      - name: Madge
+        run: yarn run madge
+
+      - name: Test
+        run: yarn run test

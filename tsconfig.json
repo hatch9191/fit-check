@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es5",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/atoms/*": ["./src/components/_atoms/*"],
+      "@/molecules/*": ["./src/components/_molecules/*"],
+      "@/organisms/*": ["./src/components/_organisms/*"],
+      "@/templates/*": ["./src/components/_templates/*"],
+      "@/pages/*": ["./src/pages/*"],
+      "@/graphql/*": ["./src/graphql/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/styles/*": ["./src/styles/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/shared/*": ["./src/components/shared/*"],
+      "@/constants/*": ["./src/constants/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/helpers/*": ["./src/helpers/*"]
+    }
+  },
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": [
+    "vite.config.ts",
+    "node_modules",
+    "cypress",
+    ".next",
+    ".storybook",
+    "codegen.yml",
+    "next.config.js",
+    "coverage",
+    "storybook-static",
+    "config.js",
+    "codegen_rq.ts"
+  ]
+}
