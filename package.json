@@ -1,6 +1,6 @@
 {
-  "name": "@feast-it/tahini-and-the-temple-of-doom",
-  "version": "1.4.0",
+  "name": "fit-check",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "next start",
@@ -14,8 +14,8 @@
     "test": "vitest",
     "test:ci": "vitest run",
     "test:ui": "vitest --ui",
-    "dev": "concurrently \"next dev -p 3001\" \"yarn open\"",
-    "open": "open http://localhost:3001",
+    "dev": "next dev -p 3000",
+    "open": "open http://localhost:3000",
     "prepare": "husky install",
     "gen:types": "graphql-codegen --config codegen.ts --require dotenv/config",
     "dev:storybook": "storybook dev -p 6006",
@@ -23,20 +23,26 @@
     "madge": "madge --circular --extensions ts,tsx,js,jsx src"
   },
   "dependencies": {
-    "@emotion/core": "10.0.35",
-    "@emotion/styled": "10.0.27",
-    "@feast-it/ui": "1.5.1",
+    "@ant-design/cssinjs": "1.20.0",
+    "@apollo/client": "3.10.4",
     "@graphql-codegen/typescript-react-query": "6.0.0",
+    "@hookform/resolvers": "3.6.0",
     "@tanstack/react-query": "4.36.1",
     "@tanstack/react-query-devtools": "4.36.1",
+    "antd": "5.18.0",
+    "apollo-server-micro": "3.13.0",
+    "aws-amplify": "6.0.16",
     "axios": "1.6.2",
-    "emotion-theming": "10.0.27",
+    "date-fns": "3.6.0",
     "graphql": "16.8.1",
     "graphql-tag": "2.12.6",
     "js-cookie": "3.0.1",
-    "next": "13.5.4",
+    "jwt-decode": "3.1.2",
+    "next": "13.4.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "7.51.5",
+    "yup": "1.4.0"
   },
   "devDependencies": {
     "@commitlint/cli": "18.4.3",

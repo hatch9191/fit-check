@@ -24,12 +24,12 @@
       "@/molecules/*": ["./src/components/_molecules/*"],
       "@/organisms/*": ["./src/components/_organisms/*"],
       "@/templates/*": ["./src/components/_templates/*"],
+      "@/shared/*": ["./src/components/_shared/*"],
       "@/pages/*": ["./src/pages/*"],
       "@/graphql/*": ["./src/graphql/*"],
       "@/utils/*": ["./src/utils/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/hooks/*": ["./src/hooks/*"],
-      "@/shared/*": ["./src/components/shared/*"],
       "@/constants/*": ["./src/constants/*"],
       "@/types/*": ["./src/types/*"],
       "@/helpers/*": ["./src/helpers/*"]

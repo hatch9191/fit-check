@@ -1,7 +1,7 @@
-# Tahini-and-the-temple-of-doom
+# FitCheck
 
 ## Description
-This is the FE boilerplate setup for any new project at Togather. This boilerplate closely aligns to our tech stack of choice. At a high level the project includes the following items:
+This is the Full Stack app for FitCheck, an app to match fashion influencers and users. The stack is made up of the following:
 - [x] Next js setup
 - [x] Vitest setup for unit testing
 - [x] MSW setup for mocking API calls in integration tests
@@ -12,6 +12,7 @@ This is the FE boilerplate setup for any new project at Togather. This boilerpla
 - [x] Eslint setup
 - [x] Prettier setup
 - [x] Storybook setup
+- [x] Chakra UI library
 - [x] Atomic design folder structure
 - [x] Commitlint for linting commit messages
 - [x] Husky for git hooks
