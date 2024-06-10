@@ -12,7 +12,6 @@ import { getBase64 } from "@/helpers/antd/upload";
 
 type ImageUploaderProps<T> = {
   name: Path<T>;
-  field: ControllerRenderProps<T, any>;
   maxPhotos: number;
   setValue: UseFormSetValue<T>;
   trigger: UseFormTrigger<T>;
@@ -20,10 +19,10 @@ type ImageUploaderProps<T> = {
 
 export function ImageUploader<T>({
   name,
-  field,
   maxPhotos,
   setValue,
   trigger,
+  ...props
 }: ImageUploaderProps<T>): ReactElement {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -49,7 +48,7 @@ export function ImageUploader<T>({
   return (
     <>
       <Upload
-        {...field}
+        {...props}
         accept=".jpeg,.jpg,.png"
         fileList={fileList}
         listType="picture-card"

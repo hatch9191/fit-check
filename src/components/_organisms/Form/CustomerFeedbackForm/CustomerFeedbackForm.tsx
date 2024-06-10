@@ -1,15 +1,14 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Flex, Input, Typography, Button, Form } from "antd";
+import { Flex, Input, Button, Form } from "antd";
 import React, { ReactElement } from "react";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 import { ImageUploader } from "@/molecules/Form/ImageUploader";
 
 import { customerFeedbackFormSchema } from "./CustomerFeedbackForm.schema";
-import { errorTextStyle } from "./CustomerFeedbackForm.styled";
+import { formStyle } from "./CustomerFeedbackForm.styled";
 import { TCustomerFeedbackFormValues } from "./types";
-
-const { Title, Text } = Typography;
+import { FormField } from "@/molecules/Form/FormField";
 
 const MAX_PHOTOS = 3;
 
@@ -25,34 +24,69 @@ export function CustomerFeedbackForm(): ReactElement {
     criteriaMode: "all",
     shouldFocusError: false,
   });
-  const onSubmit: SubmitHandler<TCustomerFeedbackFormValues> = (data) => data;
+  const onSubmit: SubmitHandler<TCustomerFeedbackFormValues> = (data) =>
+    console.log(data);
 
   return (
-    <Form onFinish={handleSubmit(onSubmit)}>
+    <Form onFinish={handleSubmit(onSubmit)} style={formStyle}>
       <Flex gap={2} vertical={true}>
-        <Controller
+        {/* <Controller
           name="description"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
             <Form.Item>
-              <Title level={5}>Description</Title>
+              <InputLabel>Description</InputLabel>
 
               <Input.TextArea
                 placeholder="Please enter a description..."
                 minLength={100}
                 maxLength={1000}
+                rows={5}
                 {...field}
               />
 
-              {errors.description && (
-                <Text style={errorTextStyle}>{errors.description.message}</Text>
-              )}
+              <InputError>{errors.description.message}</InputError>
             </Form.Item>
+          )}
+        /> */}
+
+        <FormField
+          name="description"
+          control={control}
+          required={true}
+          label="Description"
+          errors={errors}
+          inputComponent={(props) => (
+            <Input.TextArea
+              {...props}
+              placeholder="Please enter a description..."
+              minLength={100}
+              maxLength={1000}
+              rows={5}
+            />
           )}
         />
 
-        <Form.Item>
+        <FormField
+          name="photos"
+          control={control}
+          required={true}
+          defaultValue={[]}
+          label="Photo upload"
+          errors={errors}
+          inputComponent={(props) => (
+            <ImageUploader<TCustomerFeedbackFormValues>
+              {...props}
+              name="photos"
+              maxPhotos={MAX_PHOTOS}
+              setValue={setValue}
+              trigger={trigger}
+            />
+          )}
+        />
+
+        {/* <Form.Item>
           <Title level={5}>Photo upload</Title>
 
           <Controller
@@ -73,9 +107,9 @@ export function CustomerFeedbackForm(): ReactElement {
           {errors.photos && (
             <Text style={errorTextStyle}>{errors.photos.message}</Text>
           )}
-        </Form.Item>
+        </Form.Item> */}
 
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" size="large">
           Submit
         </Button>
       </Flex>
