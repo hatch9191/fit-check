@@ -13,5 +13,3 @@
 * **imports:** comment out intial server setup code ([99c94a6](https://github.com/hatch9191/fit-check/commit/99c94a6ba333e7a0bec2d9bd4b4193fb5629cec6))
 * **release:** update token name on workflow ([#2](https://github.com/hatch9191/fit-check/issues/2)) ([128aeac](https://github.com/hatch9191/fit-check/commit/128aeace826e25540c25c7131125266d7d54d8be))
 * **tests:** add first test file ([07f4d70](https://github.com/hatch9191/fit-check/commit/07f4d7088526746e247201f61a769e7c498ab85c))
-
-#keep
