@@ -45,7 +45,7 @@
   },
   "rules": {
     "import/order": [
-      "error",
+      "warn",
       {
         "newlines-between": "always",
         "groups": [
@@ -60,13 +60,7 @@
           "order": "asc",
           "caseInsensitive": true
         },
-        "pathGroupsExcludedImportTypes": ["builtin"],
-        "pathGroups": [
-          {
-            "pattern": "@feast-it",
-            "group": "internal"
-          }
-        ]
+        "pathGroupsExcludedImportTypes": ["builtin"]
       }
     ],
     "import/no-anonymous-default-export": "warn",
