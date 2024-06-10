@@ -5,8 +5,7 @@ import React, { ReactElement, ReactNode, useState } from "react";
 
 import { MAX_QUERY_ERROR_RETRIES } from "@/constants/reactQuery";
 import { FIFTEEN_MINUTES_IN_MS, FIVE_MINUTES_IN_MS } from "@/constants/time";
-
-import { GlobalStyle } from "../GlobalStyle";
+import { GlobalStyle } from "@/shared/GlobalStyle";
 
 interface ProvidersProps {
   children: ReactNode;

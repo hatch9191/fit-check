@@ -1,13 +1,12 @@
 import React from "react";
 import { Decorator } from "@storybook/react";
-import { ThemeProvider } from "emotion-theming";
-import { baseTheme } from "@feast-it/ui";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ConfigProvider } from "antd";
 
 export const WithUiThemeDecorator: Decorator = (Story) => (
-  <ThemeProvider theme={baseTheme}>
+  <ConfigProvider>
     <Story />
-  </ThemeProvider>
+  </ConfigProvider>
 );
 
 export const WithApolloClient: Decorator = (Story) => {

@@ -7,7 +7,7 @@ import { envVarConfig } from "@/helpers/env/envVarConfig";
 
 const AUTH_TOKEN_COOKIE_NAME = "AUTHENTICATION_TOKEN_V2";
 
-const getTogatherClient = (): (() => AxiosInstance) => {
+const getAxiosClient = (): (() => AxiosInstance) => {
   let instance;
 
   return (): AxiosInstance => {
@@ -50,4 +50,4 @@ const withAuthInterceptor = (client: AxiosInstance) => {
   return client;
 };
 
-export const getTogatherSingleton = getTogatherClient();
+export const getAxiosSingleton = getAxiosClient();

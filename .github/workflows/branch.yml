@@ -9,10 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup
-        uses: ./.github/actions/setup
+      - name: Set up Node 20
+        uses: actions/setup-node@v3
         with:
-          npm_token: ${{ secrets.NPM_TOKEN }}
+          node-version: 20
+
+      - name: Install
+        run: yarn install --frozen-lockfile
+        shell: bash
 
       - name: Lint
         run: yarn run lint
