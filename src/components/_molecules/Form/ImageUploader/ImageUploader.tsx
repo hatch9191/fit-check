@@ -62,6 +62,7 @@ export function ImageUploader<T>({
 
       {previewImage && (
         <Image
+          alt="Preview image"
           wrapperStyle={{ display: "none" }}
           preview={{
             visible: previewOpen,
