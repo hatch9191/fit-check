@@ -118,10 +118,4 @@ meaning you will get intellisense when using them.
 The project uses Storybook. This is a tool for UI development. It makes development faster and easier by isolating components. This allows us to build components in isolation and test them in isolation. Storybook also allows us to document components and their props whilst creating visibility for wider business teams such as design on per-project basis.
 
 ## Deploying
-Uses [feast-it/tapas/deploy-sst](https://github.com/feast-it/tapas/tree/0.0.1/deploy-sst) for deploying to AWS with [SST](https://docs.sst.dev/start/nextjs). Configuration needed:
-
-- AWS credentials from GitHub secrets.
-- AWS region
-- Service
-- Environment
-- Node.js version
+Likely with Vercel (TBC)
