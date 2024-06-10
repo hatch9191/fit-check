@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/hatch9191/fit-check/compare/v1.0.0...v1.0.1) (2024-06-10)
+
+
+### Bug Fixes
+
+* **readme:** update codeblock ([3ebff17](https://github.com/hatch9191/fit-check/commit/3ebff17fbc2729c1b272a0f076862f412659b540))
+
 ## 1.0.0 (2024-06-10)
 
 
