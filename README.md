@@ -51,7 +51,7 @@ function is a closure which allows us to render the component once and then run 
 allows us to setup default props at the root render level and then override individual props in each setup function called. To override individual props ensure `setup` functions are called
 in different test scopes. 
 
-```
+```ts
 import { componentRenderer, screen } from "@/helpers/tests/customRender";
 import Home from "@/pages/index";
 
@@ -73,7 +73,7 @@ describe(`<${Home.name}/>`, () => {
 
 All hook unit tests should follow a similar pattern using the custom `renderHook` function.
 
-```
+```ts
 import * as featureFlagConfig from "./featureFlagConfig";
 import { useFeatureFlag } from "./useFeatureFlag";
 
