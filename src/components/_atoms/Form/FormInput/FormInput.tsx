@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { useController, FieldValues, Path, Control } from "react-hook-form";
 
 import { RenderProps } from "@/types/react-hook-form";
@@ -9,13 +9,17 @@ type TFormInputProps<
 > = {
   control: Control<TFieldValues>;
   name: TFieldName;
-  render: ({ field }: RenderProps<TFieldValues, TFieldName>) => React.ReactNode;
+  render: ({ field }: RenderProps<TFieldValues, TFieldName>) => ReactNode;
 };
 
 export function FormInput<
   TFieldValues extends FieldValues,
   TFieldName extends Path<TFieldValues>
->({ control, name, render }: TFormInputProps<TFieldValues, TFieldName>) {
+>({
+  control,
+  name,
+  render,
+}: TFormInputProps<TFieldValues, TFieldName>): ReactElement {
   const { field, fieldState } = useController({
     name,
     control,

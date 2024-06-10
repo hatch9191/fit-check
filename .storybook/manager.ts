@@ -3,8 +3,7 @@ import { create } from "@storybook/theming";
 
 const theme = create({
   base: "dark",
-  brandTitle: "Togather Boilerplate UI",
-  brandUrl: "https://www.togather.com",
+  brandTitle: "FitCheck Boilerplate UI",
 });
 
 addons.setConfig({ theme });

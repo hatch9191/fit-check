@@ -103,7 +103,7 @@ describe(useFeatureFlag.name, () => {
 ```
 
 ## Data fetching
-The project uses [React query](https://react-query.tanstack.com/) for data fetching with a corresponding [React query codegen](https://the-guilddev/graphql/codegen/plugins/typescript/typescript-react-query) for auto hook generation. A codegen custom fetcher has also been added to handle errors and invoke our custom Axios client. The custom fetcher can be found in `src/graphql/codegen/customFetcher.ts`. This custom fetcher invokes our Axios Togather singleton client found in `src/helpers/http/services/togather.ts`. The point of this singleton is to have one instance of our Togather client used for all requests.
+The project uses [React query](https://react-query.tanstack.com/) for data fetching with a corresponding [React query codegen](https://the-guilddev/graphql/codegen/plugins/typescript/typescript-react-query) for auto hook generation. A codegen custom fetcher has also been added to handle errors and invoke the custom Axios client. The custom fetcher can be found in `src/graphql/codegen/customFetcher.ts`. This custom fetcher invokes the Axios singleton client found in `src/helpers/http/services/client.ts`. The point of this singleton is to have one instance used for all requests.
 
 Any new services whether graphql or rest should have a corresponding axios client file created in the service's folder.
 
