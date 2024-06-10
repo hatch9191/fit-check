@@ -1,7 +1,8 @@
 {
   "name": "fit-check",
   "version": "0.0.1",
-  "private": true,
+  "author": "Harry Evans",
+  "license": "MIT",
   "scripts": {
     "start": "next start",
     "build": "next build",
