@@ -16,6 +16,15 @@ export const GlobalStyle = (): ReactElement => {
           height: 100%;
           margin: 0;
         }
+
+        button {
+          background: none;
+          border: none;
+          color: inherit;
+          cursor: pointer;
+          font: inherit;
+          outline: inherit;
+        }
       `}
     </style>
   );

@@ -1,13 +1,15 @@
 import React from "react";
 
 import { CustomerFeedbackForm } from "@/organisms/Form/CustomerFeedbackForm";
-import { DashboardLayout } from "@/templates/Layout/DashboardLayout";
+import { Meta } from "@/templates/Meta";
 
 const CustomerRequest = () => {
   return (
-    <DashboardLayout>
+    <>
+      <Meta subtitle="Request" />
+
       <CustomerFeedbackForm />
-    </DashboardLayout>
+    </>
   );
 };
 

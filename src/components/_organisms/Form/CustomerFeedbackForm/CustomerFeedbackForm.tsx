@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Flex, Input, Typography, Button, Form } from "antd";
+
 import { errorTextStyle } from "./CustomerFeedbackForm.styled";
 import { ImageUploader } from "@/molecules/Form/ImageUploader";
 import { customerFeedbackFormSchema } from "./CustomerFeedbackForm.schema";
@@ -19,7 +20,7 @@ export function CustomerFeedbackForm(): ReactElement {
     setValue,
     trigger,
   } = useForm<TCustomerFeedbackFormValues>({
-    resolver: yupResolver(customerFeedbackFormSchema(MAX_PHOTOS)),
+    resolver: yupResolver(customerFeedbackFormSchema(MAX_PHOTOS)) as any,
     criteriaMode: "all",
     shouldFocusError: false,
   });

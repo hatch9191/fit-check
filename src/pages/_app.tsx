@@ -1,15 +1,21 @@
 import { AppProps } from "next/app";
 import React from "react";
 
-import { RootLayout } from "@/templates/Layout/RootLayout";
 import { Providers } from "@/shared/Providers";
+import { DashboardLayout } from "@/templates/Layout/DashboardLayout";
 
-const App = ({ Component, pageProps }: AppProps) => {
+type TMyAppProps = AppProps & {
+  Component: AppProps["Component"] & {
+    hideHeader?: boolean;
+  };
+};
+
+const App = ({ Component, pageProps }: TMyAppProps) => {
   return (
     <Providers>
-      <RootLayout>
-        <Component {...pageProps} />
-      </RootLayout>
+      <DashboardLayout>
+        <Component {...pageProps} showHeader={Component.hideHeader} />
+      </DashboardLayout>
     </Providers>
   );
 };

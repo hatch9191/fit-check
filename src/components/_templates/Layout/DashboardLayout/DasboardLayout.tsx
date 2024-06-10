@@ -1,22 +1,24 @@
 import React, { ReactElement, ReactNode } from "react";
-import { Flex } from "antd";
-import {
-  contentContainerStyle,
-  dashboardContainerStyle,
-} from "./DashboardLayout.styled";
+import { contentContainerStyle } from "./DashboardLayout.styled";
+import { HeaderNav } from "@/organisms/Navigation/HeaderNav";
+import { Meta } from "@/templates/Meta";
 
 interface DashboardLayoutProps {
   children: ReactNode;
+  hideHeader?: boolean;
 }
 
 export function DashboardLayout({
   children,
+  hideHeader,
 }: DashboardLayoutProps): ReactElement {
   return (
     <>
-      <Flex style={dashboardContainerStyle}>
-        <Flex style={contentContainerStyle}>{children}</Flex>
-      </Flex>
+      <Meta />
+
+      {!hideHeader && <HeaderNav />}
+
+      <main style={contentContainerStyle}>{children}</main>
     </>
   );
 }

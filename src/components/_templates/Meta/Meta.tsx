@@ -6,7 +6,7 @@ interface MetaProps {
 }
 
 export function Meta({ subtitle = "" }: MetaProps): ReactElement {
-  const mainTitle = "Togather - Admin";
+  const mainTitle = "FitCheck";
   const customTitle = subtitle ? `${subtitle} | ${mainTitle}` : mainTitle;
 
   return (
