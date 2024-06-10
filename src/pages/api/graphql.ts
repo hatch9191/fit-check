@@ -1,6 +1,6 @@
 import { ApolloServer } from "apollo-server-micro";
-
 import { NextApiRequest, NextApiResponse } from "next";
+
 import { serverConfig } from "../../server/apollo/server-config";
 
 const apolloServer = new ApolloServer(serverConfig);

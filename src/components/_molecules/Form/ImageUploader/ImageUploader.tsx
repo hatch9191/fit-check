@@ -1,14 +1,14 @@
-import { ReactElement, useState } from "react";
 import { Upload, UploadFile, Image } from "antd";
-
-import { UploadButton } from "@/atoms/Form/UploadButton";
-import { getBase64 } from "@/helpers/antd/upload";
+import React, { ReactElement, useState } from "react";
 import {
   ControllerRenderProps,
   UseFormSetValue,
   UseFormTrigger,
   Path,
 } from "react-hook-form";
+
+import { UploadButton } from "@/atoms/Form/UploadButton";
+import { getBase64 } from "@/helpers/antd/upload";
 
 type ImageUploaderProps<T> = {
   name: Path<T>;
@@ -34,7 +34,7 @@ export function ImageUploader<T>({
       file.preview = await getBase64(file.originFileObj);
     }
 
-    setPreviewImage(file.url || (file.preview as string));
+    setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
   };
 

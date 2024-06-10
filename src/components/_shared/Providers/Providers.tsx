@@ -1,10 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import React, { ReactElement, ReactNode, useState } from "react";
 import { ConfigProvider } from "antd";
+import React, { ReactElement, ReactNode, useState } from "react";
 
 import { MAX_QUERY_ERROR_RETRIES } from "@/constants/reactQuery";
 import { FIFTEEN_MINUTES_IN_MS, FIVE_MINUTES_IN_MS } from "@/constants/time";
+
 import { GlobalStyle } from "../GlobalStyle";
 
 interface ProvidersProps {
@@ -32,9 +33,7 @@ export function Providers({ children }: ProvidersProps): ReactElement {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
-
       <ConfigProvider>{children}</ConfigProvider>
-
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

@@ -1,11 +1,12 @@
-import { ReactElement } from "react";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Flex, Input, Typography, Button, Form } from "antd";
+import React, { ReactElement } from "react";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
-import { errorTextStyle } from "./CustomerFeedbackForm.styled";
 import { ImageUploader } from "@/molecules/Form/ImageUploader";
+
 import { customerFeedbackFormSchema } from "./CustomerFeedbackForm.schema";
+import { errorTextStyle } from "./CustomerFeedbackForm.styled";
 import { TCustomerFeedbackFormValues } from "./types";
 
 const { Title, Text } = Typography;
@@ -24,8 +25,7 @@ export function CustomerFeedbackForm(): ReactElement {
     criteriaMode: "all",
     shouldFocusError: false,
   });
-  const onSubmit: SubmitHandler<TCustomerFeedbackFormValues> = (data) =>
-    console.log(data);
+  const onSubmit: SubmitHandler<TCustomerFeedbackFormValues> = (data) => data;
 
   return (
     <Form onFinish={handleSubmit(onSubmit)}>

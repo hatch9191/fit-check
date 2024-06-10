@@ -1,4 +1,3 @@
-import { baseTheme } from "@feast-it/ui";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, RenderOptions, RenderResult } from "@testing-library/react";
 import {
@@ -6,7 +5,7 @@ import {
   RenderHookOptions,
   RenderHookResult,
 } from "@testing-library/react-hooks";
-import { ThemeProvider } from "emotion-theming";
+import { ConfigProvider } from "antd";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 import React, { ReactElement, ReactNode, useMemo } from "react";
 
@@ -25,11 +24,11 @@ const RootSupplierWrapper = ({ children }: { children: ReactNode }) => {
   );
 
   return (
-    <ThemeProvider theme={baseTheme}>
-      <QueryClientProvider client={mockQueryClient}>
-        <MemoryRouterProvider>{children}</MemoryRouterProvider>
-      </QueryClientProvider>
-    </ThemeProvider>
+    <QueryClientProvider client={mockQueryClient}>
+      <MemoryRouterProvider>
+        <ConfigProvider>{children}</ConfigProvider>
+      </MemoryRouterProvider>
+    </QueryClientProvider>
   );
 };
 

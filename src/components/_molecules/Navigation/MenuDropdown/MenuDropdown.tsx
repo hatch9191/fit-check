@@ -1,11 +1,11 @@
-import { ReactElement } from "react";
-import { Button, Dropdown, Flex, MenuProps, Space, Menu } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
+import { Button, Dropdown, Flex, MenuProps, Space, Menu, theme } from "antd";
 import Link from "next/link";
-import { theme } from "antd";
+import React, { ReactElement } from "react";
 
-import { createStyles } from "@/utils/styles";
 import { PATHS } from "@/constants/paths";
+import { createStyles } from "@/utils/styles";
+
 import {
   containerStyle,
   menuIconStyle,
@@ -45,7 +45,7 @@ export function MenuDropdown(): ReactElement {
             <Menu items={items} style={menuStyle} />
 
             <Space style={{ padding: 8 }}>
-              <Button type="primary" onClick={() => console.log("logout")}>
+              <Button type="primary" onClick={() => null}>
                 Log out
               </Button>
             </Space>

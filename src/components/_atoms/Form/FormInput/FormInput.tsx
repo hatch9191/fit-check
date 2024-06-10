@@ -1,6 +1,7 @@
-import { RenderProps } from "@/types/react-hook-form";
 import React from "react";
 import { useController, FieldValues, Path, Control } from "react-hook-form";
+
+import { RenderProps } from "@/types/react-hook-form";
 
 type TFormInputProps<
   TFieldValues extends FieldValues,
