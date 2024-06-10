@@ -3,7 +3,7 @@ name: Develop CI
 on:
   push:
     branches:
-      - develop
+      - trunk
 
 jobs:
   run-semantic-release:
@@ -15,21 +15,20 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup
-        uses: ./.github/actions/setup
-        with:
-          npm_token: ${{ secrets.NPM_TOKEN }}
+      - name: Install
+        run: yarn install --frozen-lockfile
+        shell: bash
 
       - name: Publish Version
         uses: codfish/semantic-release-action@v3
         env:
-          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CI: true
           HUSKY: 0
         with:
           branches: |
             [
-              'develop'
+              'trunk'
             ]
           tag-format: v${version}
           plugins: >

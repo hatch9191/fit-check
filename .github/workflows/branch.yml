@@ -9,10 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup
-        uses: ./.github/actions/setup
-        with:
-          npm_token: ${{ secrets.NPM_TOKEN }}
+      - name: Install
+        run: yarn install --frozen-lockfile
+        shell: bash
 
       - name: Lint
         run: yarn run lint
