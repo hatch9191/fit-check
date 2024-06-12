@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/hatch9191/fit-check/compare/v1.0.1...v1.1.0) (2024-06-12)
+
+
+### Features
+
+* **FIT-10:** build customer request form ([#3](https://github.com/hatch9191/fit-check/issues/3)) ([ab5f719](https://github.com/hatch9191/fit-check/commit/ab5f719419942d790b4bf681a138f7e6002a7ff1))
+
 ## [1.0.1](https://github.com/hatch9191/fit-check/compare/v1.0.0...v1.0.1) (2024-06-10)
 
 
