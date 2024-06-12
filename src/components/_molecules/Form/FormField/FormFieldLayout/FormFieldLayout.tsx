@@ -1,7 +1,8 @@
 import { Form } from "antd";
-import { InputLabel } from "../../../../_atoms/Form/InputLabel";
+import React, { ReactNode } from "react";
+
 import { InputError } from "../../../../_atoms/Form/InputError";
-import { ReactNode } from "react";
+import { InputLabel } from "../../../../_atoms/Form/InputLabel";
 
 interface TFormFieldLayoutProps {
   children: ReactNode;
@@ -15,11 +16,9 @@ export function FormFieldLayout({
   children,
 }: TFormFieldLayoutProps) {
   return (
-    <Form.Item>
+    <Form.Item validateStatus={errorMessage ? "error" : ""}>
       <InputLabel>{label}</InputLabel>
-
       {children}
-
       <InputError>{errorMessage}</InputError>
     </Form.Item>
   );

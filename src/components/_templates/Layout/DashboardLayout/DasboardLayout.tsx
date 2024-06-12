@@ -1,3 +1,4 @@
+import { Flex } from "antd";
 import React, { ReactElement, ReactNode } from "react";
 
 import { HeaderNav } from "@/organisms/Navigation/HeaderNav";
@@ -7,7 +8,6 @@ import {
   contentContainerStyle,
   mainContentContainerStyle,
 } from "./DashboardLayout.styled";
-import { Flex } from "antd";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -22,6 +22,7 @@ export function DashboardLayout({
     <>
       <Meta />
       {!hideHeader && <HeaderNav />}
+
       <main style={contentContainerStyle}>
         <Flex style={mainContentContainerStyle}>{children}</Flex>
       </main>

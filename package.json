@@ -25,6 +25,7 @@
     "madge": "madge --circular --extensions ts,tsx,js,jsx src"
   },
   "dependencies": {
+    "@ant-design/colors": "^7.0.2",
     "@ant-design/cssinjs": "1.20.0",
     "@apollo/client": "3.10.4",
     "@graphql-codegen/typescript-react-query": "6.0.0",

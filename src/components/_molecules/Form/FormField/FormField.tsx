@@ -1,4 +1,4 @@
-import { ReactElement, ElementType } from "react";
+import React, { ReactElement, ElementType } from "react";
 import {
   Controller,
   FieldErrors,
@@ -12,11 +12,11 @@ import { FormFieldLayout } from "./FormFieldLayout";
 type TFormFieldProps<T extends FieldValues> = {
   name: Path<T>;
   control: Control<T>;
+  inputComponent: ElementType;
   required?: boolean;
   label?: string;
   errors?: FieldErrors<T>;
   defaultValue?: any;
-  inputComponent: ElementType;
 };
 
 export function FormField<T extends FieldValues>({

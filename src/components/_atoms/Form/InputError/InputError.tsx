@@ -1,7 +1,9 @@
+import { Flex, Typography } from "antd";
 import React from "react";
-import { Typography } from "antd";
-import { errorTextStyle } from "./InputError.styled";
+
 import { ReactElementOrNull } from "@/types/common";
+
+import { errorContainerStyle, errorTextStyle } from "./InputError.styled";
 
 const { Text } = Typography;
 
@@ -10,7 +12,13 @@ type TInputErrorProps = {
 };
 
 export function InputError({ children }: TInputErrorProps): ReactElementOrNull {
-  if (!children) return null;
+  if (!children) {
+    return null;
+  }
 
-  return <Text style={errorTextStyle}>{children}</Text>;
+  return (
+    <Flex style={errorContainerStyle}>
+      <Text style={errorTextStyle}>{children}</Text>
+    </Flex>
+  );
 }

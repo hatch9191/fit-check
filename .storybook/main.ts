@@ -1,6 +1,6 @@
-import type { StorybookConfig } from "@storybook/nextjs";
+const webpackAliases = require("../aliases");
 
-const config: StorybookConfig = {
+module.exports = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(ts|tsx)"],
   addons: [
     "@storybook/addon-links",
@@ -16,6 +16,10 @@ const config: StorybookConfig = {
   },
   staticDirs: ["../public"],
   async webpackFinal(config, { configType }) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      ...webpackAliases,
+    };
     config.module.rules.push({
       test: /\.(graphql|gql)$/,
       exclude: /node_modules/,
@@ -26,4 +30,3 @@ const config: StorybookConfig = {
     return config;
   },
 };
-export default config;

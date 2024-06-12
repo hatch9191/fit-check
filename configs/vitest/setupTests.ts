@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 
 process.env = {
   ...process.env,
-  NEXT_PUBLIC_GRAPHQL_API_BASE_URI: "http://localhost:3000/api/graphql",
+  GRAPHQL_API_BASE_URI: "http://localhost:3000/api/graphql",
 };
 
 Object.defineProperty(window, "matchMedia", {
