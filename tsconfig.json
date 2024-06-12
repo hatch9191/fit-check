@@ -47,6 +47,7 @@
     "coverage",
     "storybook-static",
     "config.js",
-    "codegen_rq.ts"
+    "codegen_rq.ts",
+    "aliases.js"
   ]
 }

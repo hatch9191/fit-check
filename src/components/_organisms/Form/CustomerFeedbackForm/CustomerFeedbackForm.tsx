@@ -1,15 +1,14 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Flex, Input, Typography, Button, Form } from "antd";
+import { Flex, Input, Button, Form } from "antd";
 import React, { ReactElement } from "react";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 
-import { ImageUploader } from "@/molecules/Form/ImageUploader";
+import { FormField } from "@/molecules/Form/FormField";
+import { ImageUploaderFormField } from "@/molecules/Form/ImageUploaderFormField";
 
 import { customerFeedbackFormSchema } from "./CustomerFeedbackForm.schema";
-import { errorTextStyle } from "./CustomerFeedbackForm.styled";
+import { formStyle } from "./CustomerFeedbackForm.styled";
 import { TCustomerFeedbackFormValues } from "./types";
-
-const { Title, Text } = Typography;
 
 const MAX_PHOTOS = 3;
 
@@ -28,54 +27,38 @@ export function CustomerFeedbackForm(): ReactElement {
   const onSubmit: SubmitHandler<TCustomerFeedbackFormValues> = (data) => data;
 
   return (
-    <Form onFinish={handleSubmit(onSubmit)}>
+    <Form onFinish={handleSubmit(onSubmit)} style={formStyle}>
       <Flex gap={2} vertical={true}>
-        <Controller
+        <FormField
           name="description"
           control={control}
-          rules={{ required: true }}
-          render={({ field }) => (
-            <Form.Item>
-              <Title level={5}>Description</Title>
-
-              <Input.TextArea
-                placeholder="Please enter a description..."
-                minLength={100}
-                maxLength={1000}
-                {...field}
-              />
-
-              {errors.description && (
-                <Text style={errorTextStyle}>{errors.description.message}</Text>
-              )}
-            </Form.Item>
+          required={true}
+          label="Description"
+          errors={errors}
+          inputComponent={(props) => (
+            <Input.TextArea
+              {...props}
+              placeholder="Please enter a description..."
+              minLength={100}
+              maxLength={1000}
+              rows={5}
+            />
           )}
         />
 
-        <Form.Item>
-          <Title level={5}>Photo upload</Title>
+        <ImageUploaderFormField
+          name="photos"
+          control={control}
+          maxPhotos={MAX_PHOTOS}
+          setValue={setValue}
+          trigger={trigger}
+          label="Upload images"
+          errors={errors}
+          defaultValue={[]}
+          required={true}
+        />
 
-          <Controller
-            name="photos"
-            control={control}
-            defaultValue={[]}
-            render={({ field }) => (
-              <ImageUploader<TCustomerFeedbackFormValues>
-                name="photos"
-                field={field}
-                maxPhotos={MAX_PHOTOS}
-                setValue={setValue}
-                trigger={trigger}
-              />
-            )}
-          />
-
-          {errors.photos && (
-            <Text style={errorTextStyle}>{errors.photos.message}</Text>
-          )}
-        </Form.Item>
-
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" size="large">
           Submit
         </Button>
       </Flex>

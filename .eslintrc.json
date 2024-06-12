@@ -33,7 +33,8 @@
     "commitlint.config.js",
     "package.json",
     "yarn.lock",
-    ".next"
+    ".next",
+    "aliases.js"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
