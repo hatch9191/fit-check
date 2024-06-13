@@ -1,3 +1,10 @@
+## [1.2.0](https://github.com/hatch9191/fit-check/compare/v1.1.0...v1.2.0) (2024-06-13)
+
+
+### Features
+
+* **FIT-19:** create db tables ([#4](https://github.com/hatch9191/fit-check/issues/4)) ([d366929](https://github.com/hatch9191/fit-check/commit/d3669290dff63157e70a1bbb289f03cac5ad02eb))
+
 ## [1.1.0](https://github.com/hatch9191/fit-check/compare/v1.0.1...v1.1.0) (2024-06-12)
 
 
