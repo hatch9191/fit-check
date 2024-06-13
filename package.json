@@ -25,11 +25,12 @@
     "madge": "madge --circular --extensions ts,tsx,js,jsx src"
   },
   "dependencies": {
-    "@ant-design/colors": "^7.0.2",
+    "@ant-design/colors": "7.0.2",
     "@ant-design/cssinjs": "1.20.0",
     "@apollo/client": "3.10.4",
     "@graphql-codegen/typescript-react-query": "6.0.0",
     "@hookform/resolvers": "3.6.0",
+    "@prisma/client": "5.15.0",
     "@tanstack/react-query": "4.36.1",
     "@tanstack/react-query-devtools": "4.36.1",
     "antd": "5.18.0",
@@ -41,6 +42,7 @@
     "js-cookie": "3.0.1",
     "jwt-decode": "3.1.2",
     "next": "13.4.4",
+    "prisma": "5.15.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.51.5",

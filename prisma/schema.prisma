@@ -1,0 +1,165 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_DB_URL")
+}
+
+model User {
+  id               String         @id @db.Uuid
+  email            String         @unique @db.VarChar(255)
+  firstName        String?        @map("first_name") @db.VarChar(255)
+  lastName         String?        @map("last_name") @db.VarChar(255)
+  password         String?        @db.VarChar(255)
+  profileName      String?        @map("profile_name") @db.VarChar(255)
+  bio              String?
+  profileImageId   String?        @unique @map("profile_image_id") @db.Uuid
+  createdAt        DateTime       @default(now()) @map("created_at")
+  updatedAt        DateTime       @updatedAt @map("updated_at")
+  userRoleTypes    UserRoleType[]
+  services         Service[]
+  creatorRequests  Request[]      @relation("CreatorRequests")
+  customerRequests Request[]      @relation("CustomerRequests")
+  profileImage     Image?         @relation("UserImage", fields: [profileImageId], references: [id], onDelete: Cascade)
+
+  @@map("user")
+}
+
+model UserRoleType {
+  id         String   @id @db.Uuid
+  userId     String   @map("user_id") @db.Uuid
+  roleTypeId String   @map("role_type_id") @db.Uuid
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  roleType   RoleType @relation(fields: [roleTypeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, roleTypeId], name: "UserRoleTypeUniqueKey", map: "user_role_type_unique_key")
+  @@map("user_role_type")
+}
+
+model RoleType {
+  id            String         @id @db.Uuid
+  type          String         @db.VarChar(255)
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  userRoleTypes UserRoleType[]
+
+  @@map("role_type")
+}
+
+model Service {
+  id            String       @id @db.Uuid
+  userId        String       @map("user_id") @db.Uuid
+  serviceTypeId String       @map("service_type_id") @db.Uuid
+  subtotal      Int?
+  quantity      Int?
+  description   String?
+  state         ServiceState
+  createdAt     DateTime     @default(now()) @map("created_at")
+  updatedAt     DateTime     @updatedAt @map("updated_at")
+  serviceType   ServiceType  @relation(fields: [serviceTypeId], references: [id], onDelete: Cascade)
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("service")
+}
+
+model ServiceType {
+  id           String        @id @db.Uuid
+  type         String        @db.VarChar(255)
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  services     Service[]
+  requestItems RequestItem[]
+
+  @@map("service_type")
+}
+
+enum ServiceState {
+  INCOMPLETE
+  COMPLETE
+  LIVE
+
+  @@map("service_state")
+}
+
+model Request {
+  id               String             @id @db.Uuid
+  userId           String             @map("user_id") @db.Uuid
+  creatorId        String             @map("creator_id") @db.Uuid
+  subtotal         Int?
+  quantity         Int?
+  description      String?
+  creatorMessage   String?
+  state            RequestState
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @updatedAt @map("updated_at")
+  requestItems     RequestItem[]
+  requestItemImage RequestItemImage[]
+  customer         User               @relation("CustomerRequests", fields: [userId], references: [id], onDelete: Cascade)
+  creator          User               @relation("CreatorRequests", fields: [creatorId], references: [id], onDelete: Cascade)
+  review           RequestReview?     @relation("RequestReview")
+
+  @@map("request")
+}
+
+model RequestItem {
+  id            String      @id @db.Uuid
+  requestId     String      @map("request_id") @db.Uuid
+  serviceTypeId String      @map("service_type_id") @db.Uuid
+  feedback      String?
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
+  request       Request     @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  serviceType   ServiceType @relation(fields: [serviceTypeId], references: [id], onDelete: Cascade)
+
+  @@map("request_item")
+}
+
+model RequestItemImage {
+  id            String   @id @db.Uuid
+  requestItemId String   @map("request_item_id") @db.Uuid
+  imageId       String   @map("image_id") @db.Uuid
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+  request       Request  @relation(fields: [requestItemId], references: [id], onDelete: Cascade)
+  image         Image    @relation(fields: [imageId], references: [id], onDelete: Cascade)
+
+  @@map("request_item_image")
+}
+
+enum RequestState {
+  PENDING
+  SUBMITTED
+  RESPONDED
+
+  @@map("request_state")
+}
+
+model RequestReview {
+  id               String   @id @db.Uuid
+  requestId        String   @unique @map("request_id") @db.Uuid
+  rating           Float
+  feedback         String?
+  showReviewerName Boolean  @map("show_reviewer_name")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+  request          Request  @relation("RequestReview", fields: [requestId], references: [id], onDelete: Cascade)
+
+  @@map("request_review")
+}
+
+model Image {
+  id               String             @id @db.Uuid
+  url              String             @db.VarChar(255)
+  key              String             @db.VarChar(255)
+  bucket           String             @db.VarChar(255)
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @updatedAt @map("updated_at")
+  requestItemImage RequestItemImage[]
+  profileImage     User?              @relation("UserImage")
+
+  @@map("image")
+}
