@@ -1,5 +1,6 @@
-import { Context } from "../../context/types";
 import { User } from "./types";
+
+import { Context } from "../../context/types";
 import { createUser } from "../../modules/user/createUser";
 import { getUser } from "../../modules/user/getUser";
 

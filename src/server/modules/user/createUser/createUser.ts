@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from "uuid";
 import { PrismaClient, User } from "@prisma/client";
+import { v4 as uuidv4 } from "uuid";
 
 import { User as UserArgs } from "../../../graphql/user/types";
 

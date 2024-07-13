@@ -1,7 +1,8 @@
 import { vi } from "vitest";
 
-import { createMockContext } from "../../../context/createMockContext";
 import { createUser } from "./createUser";
+
+import { createMockContext } from "../../../context/createMockContext";
 
 vi.mock("uuid", () => ({
   v4: vi.fn().mockReturnValue("test-uuid"),

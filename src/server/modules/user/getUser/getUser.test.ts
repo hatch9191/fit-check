@@ -1,7 +1,8 @@
 import { vi } from "vitest";
 
-import { createMockContext } from "../../../context/createMockContext";
 import { getUser } from "./getUser";
+
+import { createMockContext } from "../../../context/createMockContext";
 
 vi.mock("uuid", () => ({
   v4: vi.fn().mockReturnValue("test-uuid"),
@@ -28,7 +29,7 @@ describe(getUser.name, () => {
 
     const result = await getUser(prisma);
 
-    expect(prisma.user.findFirst).toHaveBeenCalled();
+    expect(prisma.user.findFirst).toHaveBeenCalledWith();
     expect(result).toEqual(mockUser);
   });
 });
