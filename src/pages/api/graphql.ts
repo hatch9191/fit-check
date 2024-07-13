@@ -1,9 +1,8 @@
-import { ApolloServer } from "apollo-server-micro";
 import { NextApiRequest, NextApiResponse } from "next";
+import { createYoga } from "graphql-yoga";
 
-import { serverConfig } from "../../server/apollo/server-config";
-
-const apolloServer = new ApolloServer(serverConfig);
+import { schema } from "../../server/graphql/schema";
+import { createContext } from "../../server/context/createContext";
 
 export const config = {
   api: {
@@ -11,12 +10,11 @@ export const config = {
   },
 };
 
-const startServer = apolloServer.start();
-
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  await startServer;
-  await apolloServer.createHandler({ path: "/api/graphql" })(req, res);
-}
+export default createYoga<{
+  req: NextApiRequest;
+  res: NextApiResponse;
+}>({
+  schema,
+  graphqlEndpoint: "/api/graphql",
+  context: createContext,
+});
