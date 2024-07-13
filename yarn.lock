@@ -10472,7 +10472,7 @@ graphql-request@^5.0.0:
     extract-files "^9.0.0"
     form-data "^3.0.0"
 
-graphql-scalars@^1.23.0:
+graphql-scalars@1.23.0:
   version "1.23.0"
   resolved "https://registry.yarnpkg.com/graphql-scalars/-/graphql-scalars-1.23.0.tgz#486785d1a6f9449277054a92afc7e1fb73f459d6"
   integrity sha512-YTRNcwitkn8CqYcleKOx9IvedA8JIERn8BRq21nlKgOr4NEcTaWEG0sT+H92eF3ALTFbPgsqfft4cw+MGgv0Gg==
