@@ -4,7 +4,7 @@
     "target": "es5",
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "incremental": true,
@@ -32,7 +32,9 @@
       "@/hooks/*": ["./src/hooks/*"],
       "@/constants/*": ["./src/constants/*"],
       "@/types/*": ["./src/types/*"],
-      "@/helpers/*": ["./src/helpers/*"]
+      "@/helpers/*": ["./src/helpers/*"],
+      "@/server/*": ["./src/server/*"],
+      "@/__mocks__/*": ["./src/__mocks__/*"]
     }
   },
   "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],

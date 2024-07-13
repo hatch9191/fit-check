@@ -1,8 +1,10 @@
 import { vi } from "vitest";
 
-import { createUser } from "./createUser";
+import { createMockContext } from "@/__mocks__/server/context/createMockContext";
+import { user } from "@/__mocks__/server/modules/user";
+import { IMutationCreateUserArgs } from "@/graphql/codegen/codegen_rq";
 
-import { createMockContext } from "../../../context/createMockContext";
+import { createUser } from "./createUser";
 
 vi.mock("uuid", () => ({
   v4: vi.fn().mockReturnValue("test-uuid"),
@@ -10,34 +12,40 @@ vi.mock("uuid", () => ({
 
 describe(createUser.name, () => {
   const { prisma } = createMockContext();
+  const args: IMutationCreateUserArgs = {
+    firstName: user.firstName as string,
+    lastName: user.lastName as string,
+    email: user.email,
+  };
 
   it("should call the prisma query with the right args", async () => {
-    const userArgs = {
-      firstName: "Harry",
-      lastName: "Evans",
-      email: "harry.evans@fit-check.com",
-    };
-    const mockCreatedUser = {
-      ...userArgs,
-      id: "test-uuid",
-      password: null,
-      bio: null,
-      profileName: null,
-      profileImageId: null,
-      createdAt: null,
-      updatedAt: null,
-    };
+    vi.mocked(prisma.user.create).mockResolvedValue(user);
 
-    vi.mocked(prisma.user.create).mockResolvedValue(mockCreatedUser);
-
-    const result = await createUser(prisma, userArgs);
+    const result = await createUser(prisma, args);
 
     expect(prisma.user.create).toHaveBeenCalledWith({
       data: {
         id: "test-uuid",
-        ...userArgs,
+        ...args,
       },
     });
-    expect(result).toEqual(mockCreatedUser);
+    expect(result).toEqual(user);
+  });
+
+  it("should handle an error", async () => {
+    const errorMessage = "Something went wrong";
+
+    vi.mocked(prisma.user.create).mockRejectedValue(new Error(errorMessage));
+
+    await expect(createUser(prisma, args)).rejects.toThrow(
+      `Could not create user - ${errorMessage}`
+    );
+
+    expect(prisma.user.create).toHaveBeenCalledWith({
+      data: {
+        id: "test-uuid",
+        ...args,
+      },
+    });
   });
 });

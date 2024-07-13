@@ -1,8 +1,8 @@
 import { createYoga } from "graphql-yoga";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { createContext } from "../../server/context/createContext";
-import { schema } from "../../server/graphql/schema";
+import { createContext } from "@/server/context/createContext";
+import { schema } from "@/server/graphql/schema";
 
 export const config = {
   api: {

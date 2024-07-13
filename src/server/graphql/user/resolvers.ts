@@ -1,4 +1,8 @@
-import { User } from "./types";
+import {
+  IGetUserQueryVariables,
+  IMutationCreateUserArgs,
+  IUser,
+} from "@/graphql/codegen/codegen_rq";
 
 import { Context } from "../../context/types";
 import { createUser } from "../../modules/user/createUser";
@@ -8,18 +12,18 @@ export const userResolvers = {
   Query: {
     getUser: async (
       _root: unknown,
-      _args: unknown,
+      args: IGetUserQueryVariables,
       ctx: Context
-    ): Promise<User | null> => {
-      return getUser(ctx.prisma);
+    ): Promise<IUser | null> => {
+      return getUser(ctx.prisma, args);
     },
   },
   Mutation: {
     createUser: async (
       _root: unknown,
-      args: User,
+      args: IMutationCreateUserArgs,
       ctx: Context
-    ): Promise<User> => {
+    ): Promise<IUser> => {
       return createUser(ctx.prisma, args);
     },
   },
