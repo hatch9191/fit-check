@@ -45,11 +45,12 @@ export function ImageUploaderFormField<T extends FieldValues>({
     errors && errors[name] ? (errors[name]?.message as string) : undefined;
 
   const handlePreview = async (file: UploadFile) => {
-    if (!file.url && !file.preview) {
+    if (!file.url && !file.preview && file.originFileObj) {
       file.preview = await getBase64(file.originFileObj);
+
+      setPreviewImage(file.url || file.preview);
     }
 
-    setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
   };
 

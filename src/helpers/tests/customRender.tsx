@@ -4,6 +4,7 @@ import {
   renderHook,
   RenderHookOptions,
   RenderHookResult,
+  WrapperComponent,
 } from "@testing-library/react-hooks";
 import { ConfigProvider } from "antd";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
@@ -39,12 +40,16 @@ function customRenderHook<TProps, TResult>(
   callback: (props: TProps) => TResult,
   options?: RenderHookOptions<TProps>
 ): RenderHookResult<TProps, TResult> {
+  const Wrapper: WrapperComponent<TProps & { children: ReactNode }> = ({
+    children,
+  }) => (
+    <RootSupplierWrapper {...options?.initialProps}>
+      {children}
+    </RootSupplierWrapper>
+  );
+
   return renderHook(callback, {
-    wrapper: ({ children }: TProps & { children: ReactNode }) => (
-      <RootSupplierWrapper {...options?.initialProps}>
-        {children}
-      </RootSupplierWrapper>
-    ),
+    wrapper: Wrapper as WrapperComponent<TProps>,
     ...options,
   });
 }

@@ -8,7 +8,7 @@ import { envVarConfig } from "@/helpers/env/envVarConfig";
 const AUTH_TOKEN_COOKIE_NAME = "AUTHENTICATION_TOKEN_V2";
 
 const getAxiosClient = (): (() => AxiosInstance) => {
-  let instance;
+  let instance: AxiosInstance;
 
   return (): AxiosInstance => {
     instance =

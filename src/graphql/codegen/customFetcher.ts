@@ -25,7 +25,7 @@ export const customFetcher = <TData, TVariables>(
     });
 
     if (res.data?.errors) {
-      const { message } = res.data.errors[0];
+      const { message } = (res.data.errors as Error[])[0];
       throw new Error(message);
     }
 

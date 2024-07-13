@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-let prismaClient: PrismaClient = null;
+let prismaClient: PrismaClient | null = null;
 
 export function createPrismaClient(): PrismaClient {
   if (prismaClient) {

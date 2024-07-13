@@ -1,16 +1,12 @@
 import * as yup from "yup";
 
-import { TCustomerFeedbackFormValues } from "./types";
-
 const fileSchema = yup
   .mixed<File>()
   .test("is-file", "Must be a file", (value): value is File => {
     return value instanceof File;
   });
 
-export const customerFeedbackFormSchema = (
-  maxPhotos: number
-): yup.ObjectSchema<TCustomerFeedbackFormValues> => {
+export const customerFeedbackFormSchema = (maxPhotos: number) => {
   return yup
     .object({
       description: yup.string().required("You need to enter a description"),

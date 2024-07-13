@@ -53,6 +53,14 @@ const testConfig = defineConfig({
         find: "@/pages",
         replacement: path.resolve(__dirname, "./src/pages"),
       },
+      {
+        find: "@/server",
+        replacement: path.resolve(__dirname, "./src/server"),
+      },
+      {
+        find: "@/__mocks__",
+        replacement: path.resolve(__dirname, "./src/__mocks__"),
+      },
     ],
   },
   test: {
