@@ -1,3 +1,10 @@
+## [1.3.0](https://github.com/hatch9191/fit-check/compare/v1.2.0...v1.3.0) (2024-07-13)
+
+
+### Features
+
+* **FIT-16:** add gql server and add prisma to context ([#5](https://github.com/hatch9191/fit-check/issues/5)) ([961877d](https://github.com/hatch9191/fit-check/commit/961877d14b6bf7e46f209278d942186f45c30a86))
+
 ## [1.2.0](https://github.com/hatch9191/fit-check/compare/v1.1.0...v1.2.0) (2024-06-13)
 
 
