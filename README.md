@@ -119,3 +119,8 @@ The project uses Storybook. This is a tool for UI development. It makes developm
 
 ## Deploying
 Likely with Vercel (TBC)
+
+## Table architecture
+This is the Entity Relationship Diagram of the inital table architecture for the project. This should act as a guide for the formative stages of this project.
+
+<img width="636" alt="339273864-df684584-833e-4017-9335-729a360475b0" src="https://github.com/user-attachments/assets/4a2c6fb1-19a8-4c4a-9a30-63560ed5e130">
