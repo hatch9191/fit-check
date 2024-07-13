@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/hatch9191/fit-check/compare/v1.3.0...v1.4.0) (2024-07-13)
+
+
+### Features
+
+* **FIT-23:** use codegen to type resolvers ([#7](https://github.com/hatch9191/fit-check/issues/7)) ([804fcc7](https://github.com/hatch9191/fit-check/commit/804fcc754b5a9976cf6f625848d0661b361b0528))
+
 ## [1.3.0](https://github.com/hatch9191/fit-check/compare/v1.2.0...v1.3.0) (2024-07-13)
 
 
