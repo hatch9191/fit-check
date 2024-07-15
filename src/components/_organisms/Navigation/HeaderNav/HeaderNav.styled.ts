@@ -8,4 +8,5 @@ export const headerStyle = createStyles({
   alignItems: "center",
   borderBottom: "1px solid grey",
   padding: "0 36px",
+  justifyContent: "space-between",
 });

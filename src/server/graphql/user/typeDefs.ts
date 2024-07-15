@@ -2,11 +2,12 @@ import { gql } from "graphql-tag";
 
 export const userTypeDefs = gql`
   type Query {
-    getUser(id: String!): User
+    getUserById(id: String!): User
+    getUserByEmail(email: String!): User
   }
 
   type Mutation {
-    createUser(firstName: String!, lastName: String!, email: String!): User!
+    createUser(email: String!, password: String!): User!
   }
 
   type User {
@@ -14,6 +15,7 @@ export const userTypeDefs = gql`
     firstName: String
     lastName: String
     email: String!
+    password: String
     bio: String
     profileName: String
     updatedAt: DateTime!

@@ -5,7 +5,7 @@ export const user: User = {
   lastName: "Evans",
   email: "harry.evans@fit-check.com",
   id: "test-uuid",
-  password: null,
+  password: "hashedPassword",
   bio: null,
   profileName: null,
   profileImageId: null,

@@ -1,11 +1,14 @@
 import { PrismaClient } from "@prisma/client";
 
-import { IGetUserQueryVariables, IUser } from "@/graphql/codegen/codegen_rq";
+import {
+  IGetUserByIdQueryVariables,
+  IUser,
+} from "@/graphql/codegen/codegen_rq";
 import { handleError } from "@/helpers/errors/handleError";
 
-export async function getUser(
+export async function getUserById(
   prisma: PrismaClient,
-  args: IGetUserQueryVariables
+  args: IGetUserByIdQueryVariables
 ): Promise<IUser | null> {
   try {
     const user = await prisma.user.findUnique({
