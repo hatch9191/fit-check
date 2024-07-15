@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ConfigProvider } from "antd";
+import { Session } from "next-auth";
+import { SessionProvider } from "next-auth/react";
 import React, { ReactElement, ReactNode, useState } from "react";
 
 import { MAX_QUERY_ERROR_RETRIES } from "@/constants/reactQuery";
@@ -8,10 +10,11 @@ import { FIFTEEN_MINUTES_IN_MS, FIVE_MINUTES_IN_MS } from "@/constants/time";
 import { GlobalStyle } from "@/shared/GlobalStyle";
 
 interface ProvidersProps {
+  session?: Session | null;
   children: ReactNode;
 }
 
-export function Providers({ children }: ProvidersProps): ReactElement {
+export function Providers({ session, children }: ProvidersProps): ReactElement {
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -31,9 +34,11 @@ export function Providers({ children }: ProvidersProps): ReactElement {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GlobalStyle />
-      <ConfigProvider>{children}</ConfigProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <SessionProvider session={session}>
+        <GlobalStyle />
+        <ConfigProvider>{children}</ConfigProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </SessionProvider>
     </QueryClientProvider>
   );
 }

@@ -13,9 +13,8 @@ vi.mock("uuid", () => ({
 describe(createUser.name, () => {
   const { prisma } = createMockContext();
   const args: IMutationCreateUserArgs = {
-    firstName: user.firstName as string,
-    lastName: user.lastName as string,
     email: user.email,
+    password: user.password as string,
   };
 
   it("should call the prisma query with the right args", async () => {

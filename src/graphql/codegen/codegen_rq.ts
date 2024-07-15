@@ -1,4 +1,4 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { useMutation, useQuery, UseMutationOptions, UseQueryOptions } from '@tanstack/react-query';
 import { customFetcher } from './customFetcher';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -23,18 +23,23 @@ export type IMutation = {
 
 export type IMutationCreateUserArgs = {
   email: Scalars['String'];
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type IQuery = {
   __typename?: 'Query';
-  getUser: Maybe<IUser>;
+  getUserByEmail: Maybe<IUser>;
+  getUserById: Maybe<IUser>;
   hello: Scalars['String'];
 };
 
 
-export type IQueryGetUserArgs = {
+export type IQueryGetUserByEmailArgs = {
+  email: Scalars['String'];
+};
+
+
+export type IQueryGetUserByIdArgs = {
   id: Scalars['String'];
 };
 
@@ -46,44 +51,119 @@ export type IUser = {
   firstName: Maybe<Scalars['String']>;
   id: Scalars['String'];
   lastName: Maybe<Scalars['String']>;
+  password: Maybe<Scalars['String']>;
   profileName: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
 };
 
-export type IGetUserQueryVariables = Exact<{
+export type ICreateUserMutationVariables = Exact<{
+  email: Scalars['String'];
+  password: Scalars['String'];
+}>;
+
+
+export type ICreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', id: string, email: string } };
+
+export type IGetUserByEmailQueryVariables = Exact<{
+  email: Scalars['String'];
+}>;
+
+
+export type IGetUserByEmailQuery = { __typename?: 'Query', getUserByEmail: { __typename?: 'User', id: string, email: string, password: string | null, firstName: string | null, lastName: string | null } | null };
+
+export type IGetUserByIdQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type IGetUserQuery = { __typename?: 'Query', getUser: { __typename?: 'User', firstName: string | null } | null };
+export type IGetUserByIdQuery = { __typename?: 'Query', getUserById: { __typename?: 'User', id: string, email: string, firstName: string | null, lastName: string | null } | null };
 
 
 
-export const GetUserDocument = `
-    query GetUser($id: String!) {
-  getUser(id: $id) {
-    firstName
+export const CreateUserDocument = `
+    mutation CreateUser($email: String!, $password: String!) {
+  createUser(email: $email, password: $password) {
+    id
+    email
   }
 }
     `;
 
-export const useGetUserQuery = <
-      TData = IGetUserQuery,
-      TError = unknown
-    >(
-      variables: IGetUserQueryVariables,
-      options?: UseQueryOptions<IGetUserQuery, TError, TData>
-    ) => {
+export const useCreateUserMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<ICreateUserMutation, TError, ICreateUserMutationVariables, TContext>) => {
     
-    return useQuery<IGetUserQuery, TError, TData>(
-      ['GetUser', variables],
-      customFetcher<IGetUserQuery, IGetUserQueryVariables>(GetUserDocument, variables),
+    return useMutation<ICreateUserMutation, TError, ICreateUserMutationVariables, TContext>(
+      ['CreateUser'],
+      (variables?: ICreateUserMutationVariables) => customFetcher<ICreateUserMutation, ICreateUserMutationVariables>(CreateUserDocument, variables)(),
       options
     )};
 
-useGetUserQuery.document = GetUserDocument;
 
-useGetUserQuery.getKey = (variables: IGetUserQueryVariables) => ['GetUser', variables];
+useCreateUserMutation.fetcher = (variables: ICreateUserMutationVariables, options?: RequestInit['headers']) => customFetcher<ICreateUserMutation, ICreateUserMutationVariables>(CreateUserDocument, variables, options);
+
+export const GetUserByEmailDocument = `
+    query GetUserByEmail($email: String!) {
+  getUserByEmail(email: $email) {
+    id
+    email
+    password
+    firstName
+    lastName
+  }
+}
+    `;
+
+export const useGetUserByEmailQuery = <
+      TData = IGetUserByEmailQuery,
+      TError = unknown
+    >(
+      variables: IGetUserByEmailQueryVariables,
+      options?: UseQueryOptions<IGetUserByEmailQuery, TError, TData>
+    ) => {
+    
+    return useQuery<IGetUserByEmailQuery, TError, TData>(
+      ['GetUserByEmail', variables],
+      customFetcher<IGetUserByEmailQuery, IGetUserByEmailQueryVariables>(GetUserByEmailDocument, variables),
+      options
+    )};
+
+useGetUserByEmailQuery.document = GetUserByEmailDocument;
+
+useGetUserByEmailQuery.getKey = (variables: IGetUserByEmailQueryVariables) => ['GetUserByEmail', variables];
 
 
-useGetUserQuery.fetcher = (variables: IGetUserQueryVariables, options?: RequestInit['headers']) => customFetcher<IGetUserQuery, IGetUserQueryVariables>(GetUserDocument, variables, options);
+useGetUserByEmailQuery.fetcher = (variables: IGetUserByEmailQueryVariables, options?: RequestInit['headers']) => customFetcher<IGetUserByEmailQuery, IGetUserByEmailQueryVariables>(GetUserByEmailDocument, variables, options);
+
+export const GetUserByIdDocument = `
+    query GetUserById($id: String!) {
+  getUserById(id: $id) {
+    id
+    email
+    firstName
+    lastName
+  }
+}
+    `;
+
+export const useGetUserByIdQuery = <
+      TData = IGetUserByIdQuery,
+      TError = unknown
+    >(
+      variables: IGetUserByIdQueryVariables,
+      options?: UseQueryOptions<IGetUserByIdQuery, TError, TData>
+    ) => {
+    
+    return useQuery<IGetUserByIdQuery, TError, TData>(
+      ['GetUserById', variables],
+      customFetcher<IGetUserByIdQuery, IGetUserByIdQueryVariables>(GetUserByIdDocument, variables),
+      options
+    )};
+
+useGetUserByIdQuery.document = GetUserByIdDocument;
+
+useGetUserByIdQuery.getKey = (variables: IGetUserByIdQueryVariables) => ['GetUserById', variables];
+
+
+useGetUserByIdQuery.fetcher = (variables: IGetUserByIdQueryVariables, options?: RequestInit['headers']) => customFetcher<IGetUserByIdQuery, IGetUserByIdQueryVariables>(GetUserByIdDocument, variables, options);

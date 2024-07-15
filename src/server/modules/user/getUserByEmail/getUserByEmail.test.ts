@@ -2,28 +2,28 @@ import { vi } from "vitest";
 
 import { createMockContext } from "@/__mocks__/server/context/createMockContext";
 import { user } from "@/__mocks__/server/modules/user";
-import { IGetUserQueryVariables } from "@/graphql/codegen/codegen_rq";
+import { IGetUserByEmailQueryVariables } from "@/graphql/codegen/codegen_rq";
 
-import { getUser } from "./getUser";
+import { getUserByEmail } from "./getUserByEmail";
 
 vi.mock("uuid", () => ({
   v4: vi.fn().mockReturnValue("test-uuid"),
 }));
 
-describe(getUser.name, () => {
+describe(getUserByEmail.name, () => {
   const { prisma } = createMockContext();
-  const args: IGetUserQueryVariables = {
-    id: user.id,
+  const args: IGetUserByEmailQueryVariables = {
+    email: user.email,
   };
 
   it("should call the prisma query with the right args", async () => {
     vi.mocked(prisma.user.findUnique).mockResolvedValue(user);
 
-    const result = await getUser(prisma, args);
+    const result = await getUserByEmail(prisma, args);
 
     expect(prisma.user.findUnique).toHaveBeenCalledWith({
       where: {
-        id: args.id,
+        email: args.email,
       },
     });
     expect(result).toEqual(user);
@@ -36,12 +36,12 @@ describe(getUser.name, () => {
       new Error(errorMessage)
     );
 
-    await expect(getUser(prisma, args)).rejects.toThrow(
+    await expect(getUserByEmail(prisma, args)).rejects.toThrow(
       `Could not get user - ${errorMessage}`
     );
     expect(prisma.user.findUnique).toHaveBeenCalledWith({
       where: {
-        id: args.id,
+        email: args.email,
       },
     });
   });

@@ -10,9 +10,12 @@ type TMyAppProps = AppProps & {
   };
 };
 
-const App = ({ Component, pageProps }: TMyAppProps) => {
+const App = ({
+  Component,
+  pageProps: { session, ...pageProps },
+}: TMyAppProps) => {
   return (
-    <Providers>
+    <Providers session={session}>
       <DashboardLayout>
         <Component {...pageProps} showHeader={Component.hideHeader} />
       </DashboardLayout>
