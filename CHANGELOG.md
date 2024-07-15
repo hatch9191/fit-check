@@ -1,3 +1,10 @@
+## [1.5.0](https://github.com/hatch9191/fit-check/compare/v1.4.0...v1.5.0) (2024-07-15)
+
+
+### Features
+
+* **FIT-15:** basic email login and FE user sessions for next auth ([#8](https://github.com/hatch9191/fit-check/issues/8)) ([3d1f9f1](https://github.com/hatch9191/fit-check/commit/3d1f9f1a062e39437633e3abce384bead4e9f4c8))
+
 ## [1.4.0](https://github.com/hatch9191/fit-check/compare/v1.3.0...v1.4.0) (2024-07-13)
 
 
